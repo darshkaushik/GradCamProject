@@ -16,18 +16,7 @@ This Project uses a modified version of the [skin-mnist dataset](https://www.kag
 
 ## Model
 ---
-We used transfer learning on different models listed below and selected `Final Model` according to the stats we obtained from the training.
-
-- ResNet
-    - ResNet101
-    - ResNet152
-- VGG
-    - VGG16
-    - VGG19
-
-### Final Model 
-We selected `final model` with the following configurations
-
+We used transfer learning on different models and selected `Final Model` according to the stats we obtained from the training.
 
 ## Grad-CAM
 ---
