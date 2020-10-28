@@ -33,10 +33,6 @@ We used transfer learning on different models and selected `Final Model` accordi
 - [x] Writing a training loop with checkpoint system
 - [x] Writing utility methods for managing checkpoints and saved files
 - [ ] Trying out different configurations of the models given above
-    - [ ] ResNet101
-    - [ ] ResNet152
-    - [ ] VGG16
-    - [ ] VGG19
 - [ ] Selecting the best model and configuration
 - [ ] Converting the .ipynb file into scripts to push into the repo
 
