@@ -32,9 +32,9 @@ We used transfer learning on different models and selected `Final Model` accordi
 ### Phase 2 - Experimentation
 - [x] Writing a training loop with checkpoint system
 - [x] Writing utility methods for managing checkpoints and saved files
-- [ ] Trying out different configurations of the models given above
-- [ ] Selecting the best model and configuration
-- [ ] Converting the .ipynb file into scripts to push into the repo
+- [x] Trying out different configurations of the models given above
+- [x] Selecting the best model and configuration
+- [x] Converting the .ipynb file into scripts to push into the repo
 
 ### Phase 3 - Grad-CAM
 - [ ] Reading and understanding the details about Grad-CAM from the paper.
