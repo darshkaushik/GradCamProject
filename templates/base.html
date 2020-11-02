@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <title>GradCam - Skin Lesion Classification and Interpretation</title>
+    <script src="https://kit.fontawesome.com/16b21aa1ca.js" crossorigin="anonymous"></script>
+    {% block header %} {% endblock %}
+</head>
+
+<body>
+    <nav>
+        <img src="{{ url_for('static', filename='img/LogoLight.png') }}" alt="machine learning club NITS">
+        <a href="https://github.com/asiskumarroy/GradCam"><i class="fab fa-github"></i><span class="orange"> View
+                on </span>Github</a>
+    </nav>
+    {% block content %} {% endblock %}
+</body>
+
+</html>
