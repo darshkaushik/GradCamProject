@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-body > nav > img {
+body > nav img {
   width: 70px;
 }
 
