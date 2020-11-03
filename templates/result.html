@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/result.css')}}">
+{% endblock%}
+{% block content %}
+<h1>Beningn Keratosis</h1>
+<img src="{{ url_for('static', filename='img/demo-img1.png') }}" id="heatmap" alt="heatmap">
+<p class="desc">It is a generic class that includes seborrheic ker- atoses ("senile wart"), solar lentigo - which can be
+    regarded a
+    flat variant of seborrheic keratosis - and lichen-planus like keratoses (LPLK), which corresponds to a seborrheic
+    keratosis or a solar lentigo with inflammation and regression. The three subgroups may look different dermatoscop-
+    ically, but we grouped them together because they are similar biologically and often reported under the same generic
+    term histopathologically. From a dermatoscopic view, lichen planus-like keratoses are especially challeng- ing
+    because they can show morphologic features mimicking melanoma and are often biopsied or excised for diagnostic
+    reasons.</p>
+<img class="branch" src="{{ url_for('static', filename='img/branch.png') }}" alt="">
+{% endblock %}

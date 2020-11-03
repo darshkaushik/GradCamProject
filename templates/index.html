@@ -3,61 +3,61 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
 {% endblock%}
 {% block content %}
-<div class="content">
-    <h1>Grad-Cam</h1>
-    <div class="orange-bar"></div>
-    <div class="black-bar"></div>
-    <p class="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum atque optio quam exercitationem
-        doloribus ex tempore alias distinctio deserunt corporis eaque facere mollitia minima sequi, vero quas
-        perspiciatis odio?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum atque optio quam exercitationem
-        doloribus ex tempore alias distinctio deserunt corporis eaque facere mollitia minima sequi, vero quas
-        perspiciatis odio?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum atque optio quam exercitationem
-        doloribus ex tempore alias distinctio deserunt corporis eaque facere mollitia minima sequi, vero quas
-        perspiciatis odio?
-    </p>
-    <!-- 
+<!-- <div class="content"> -->
+<h1>Grad-Cam</h1>
+<div class="orange-bar"></div>
+<div class="black-bar"></div>
+<p class="description">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum atque optio quam exercitationem
+    doloribus ex tempore alias distinctio deserunt corporis eaque facere mollitia minima sequi, vero quas
+    perspiciatis odio?
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum atque optio quam exercitationem
+    doloribus ex tempore alias distinctio deserunt corporis eaque facere mollitia minima sequi, vero quas
+    perspiciatis odio?
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam rerum atque optio quam exercitationem
+    doloribus ex tempore alias distinctio deserunt corporis eaque facere mollitia minima sequi, vero quas
+    perspiciatis odio?
+</p>
+<!-- 
     <a href="#" class='icon-scroll'>
     </a> -->
-    <img class="branch" src="{{ url_for('static', filename='img/branch.png') }}" alt="">
+<img class="branch" src="{{ url_for('static', filename='img/branch.png') }}" alt="">
 
-    <h2>Choose one of our Demo Images</h2>
-    <div class="img-grid">
-        <a href="#">
-            <div class="img-wrap">
-                <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 1">
-            </div>
-        </a>
-        <a href="#">
-            <div class="img-wrap">
-                <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 2">
-            </div>
-        </a><a href="#">
-            <div class="img-wrap">
-                <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 3">
-            </div>
-        </a><a href="#">
-            <div class="img-wrap">
-                <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 4">
-            </div>
-        </a><a href="#">
-            <div class="img-wrap">
-                <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 5">
-            </div>
-        </a><a href="#">
-            <div class="img-wrap">
-                <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 6">
-            </div>
-        </a>
-    </div>
-    <form action="#" class='photo-form'>
-        <label id='upload-label' for="upload-photo"><span class='orange'>Upload </span>your own</label>
-        <input type="file" name="photo" id="upload-photo" />
-        <button id='sub-btn'>Submit</button>
-    </form>
+<h2>Choose one of our Demo Images</h2>
+<div class="img-grid">
+    <a href="#">
+        <div class="img-wrap">
+            <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 1">
+        </div>
+    </a>
+    <a href="#">
+        <div class="img-wrap">
+            <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 2">
+        </div>
+    </a><a href="#">
+        <div class="img-wrap">
+            <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 3">
+        </div>
+    </a><a href="#">
+        <div class="img-wrap">
+            <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 4">
+        </div>
+    </a><a href="#">
+        <div class="img-wrap">
+            <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 5">
+        </div>
+    </a><a href="#">
+        <div class="img-wrap">
+            <img src="{{ url_for('static', filename='img/demo-img1.png') }}" alt="Demo img 6">
+        </div>
+    </a>
 </div>
+<form action="#" class='photo-form'>
+    <label id='upload-label' for="upload-photo"><span class='orange'>Upload </span>your own</label>
+    <input type="file" name="photo" id="upload-photo" />
+    <button id='sub-btn'>Submit</button>
+</form>
+<!-- </div> -->
 {% endblock content %}
 
 {% block footer %}
