@@ -5,6 +5,8 @@ body {
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 body > nav > img {
   width: 70px;
@@ -18,6 +20,8 @@ nav {
   align-items: center;
   margin-bottom: 1em;
   margin-top: 30px;
+  font-size: 18px;
+  max-width: 1300px;
 }
 
 a {
@@ -32,9 +36,13 @@ a {
 .content {
   width: 75vw;
   margin: 0 auto;
+  max-width: 1300px;
 }
 
 @media (max-width: 1000px) {
+  body {
+    font-size: 12px;
+  }
   nav {
     width: 90vw;
   }
