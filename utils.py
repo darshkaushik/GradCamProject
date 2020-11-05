@@ -13,11 +13,16 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 def imshow(inp, title=None):
     """Imshow for Tensor."""
     inp = inp.numpy().transpose((1, 2, 0))
-    mean = np.array([0.6373545, 0.44605875, 0.46191868])
+    mean = np.array([0.6373545 , 0.44605875, 0.46191868])
     std = np.array([0.27236816, 0.22500427, 0.24329403])
     inp = std * inp + mean
     inp = np.clip(inp, 0, 1)
+    plt.subplot(1,2,1)
     plt.imshow(inp)
+    if map is not None:
+        plt.imshow(map,cmap='jet',alpha=alpha)
+        plt.subplot(1,2,2)
+        plt.imshow(inp)
     if title is not None:
         plt.title(title)
     plt.pause(0.001)  # pause a bit so that plots are updated
@@ -154,3 +159,47 @@ def evaluate(model, dataloader, criterion):
         print('Inference Time {:.0f}m {:.0f}s'.format(
             time_elapsed // 60, time_elapsed % 60))
     return model
+
+class Hook():
+    def __init__(self, module):
+        self.hook = module.register_backward_hook(self.hook_fn)
+    def hook_fn(self, module, input, output):
+        self.input = input
+        self.output = output
+    def close(self):
+        self.hook.remove()
+
+def gradcam(model, image, hook_layer=None):
+    """ 
+    Gradcam visualiztion of the image using the given model.
+    Arguments:
+    model       :   vgg 19 model to be used for inference and calculating gradients of activations
+    image       :   image to visualize gradcam for
+    hook_layer  :   layer of the model whose activations are to be used for calculating gradients
+    """
+
+    # hooking 
+    if hook_layer is None:
+        hook_layer = model.features[52]
+    hook = Hook(hook_layer)
+    
+    # inference and gradient calculation
+    model.eval()
+    with torch.enable_grad():
+        pred = torch.max(model(image.unsqueeze(0).to(device)))
+    model.zero_grad()
+    pred.backward()
+
+    # ReLU of the avg-pooled linear combination of channels of the output of hooked layer 
+    act_grad=hook.output[0]
+    avg_pool=nn.functional.avg_pool2d(act_grad,act_grad.shape[-1])
+    map=torch.zeros(act_grad.shape[-1],act_grad.shape[-1]).to(device)
+    for i in range(0,512):
+        map = map + (avg_pool[0][i].item()*act_grad[0][i])
+    map = nn.functional.relu(map)
+    map=zoom(map.cpu(), (224//map.shape[0],224//map.shape[0]), order=1)
+    
+    # plotting heatmap and image
+    imshow(image,alpha=0.3,map=map)
+
+    return map
