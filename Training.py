@@ -30,7 +30,6 @@ import time
 from datetime import datetime
 import os
 import copy
-import tqdm
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -162,7 +161,15 @@ if len(checkpoints):
 else:
     print('training from scratch')
 
-model_ft, hist = train_model(model_ft, dataloaders, criterion, optimizer_ft,
+model_ft, hist = train_model(model_ft,
+                             checkpoint_dir,
+                             best_model_path,
+
+                             dataloaders,
+                             dataset_sizes,
+
+                             criterion,
+                             optimizer_ft,
                              scheduler=exp_lr_scheduler,
                              num_epochs=num_epochs,
                              start_epoch=start_epoch,

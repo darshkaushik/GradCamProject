@@ -7,6 +7,8 @@ import copy
 import time
 from datetime import datetime
 
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 
 def imshow(inp, title=None):
     """Imshow for Tensor."""
@@ -28,7 +30,20 @@ def set_parameter_requires_grad(model, num_freeze):
         param.requires_grad = False
 
 
-def train_model(model, dataloaders, criterion, optimizer, scheduler, start_epoch=0, num_epochs=25, best_acc=0.0, hist={'val_acc': False, 'train_acc': False}):
+def train_model(
+    model,
+    checkpoint_dir,
+    best_model_path,
+    dataloaders,
+    dataset_sizes,
+    criterion,
+    optimizer,
+    scheduler,
+    start_epoch=0,
+    num_epochs=25,
+    best_acc=0.0,
+    hist={'val_acc': False, 'train_acc': False}
+):
     since = time.time()
 
     val_acc_history = hist['val_acc'] or []
@@ -41,47 +56,35 @@ def train_model(model, dataloaders, criterion, optimizer, scheduler, start_epoch
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
         print('-' * 10)
 
-        # Each epoch has a training and validation phase
         for phase in ['train', 'val']:
             if phase == 'train':
-                model.train()  # Set model to training mode
+                model.train()
             else:
-                model.eval()   # Set model to evaluate mode
+                model.eval()
 
             running_loss = 0.0
             running_corrects = 0
 
-            # Iterate over data.
             for inputs, labels in dataloaders[phase]:
                 inputs = inputs.to(device)
                 labels = labels.to(device)
 
-                # zero the parameter gradients
                 optimizer.zero_grad()
-                # print('beginning of forwardprop')
-                # forward
-                # track history if only in train
                 with torch.set_grad_enabled(phase == 'train'):
-
-                    # Get model outputs and calculate loss
-
                     outputs = model(inputs)
                     _, preds = torch.max(outputs, 1)
                     loss = criterion(outputs, torch.max(labels, 1)[1])
 
-                    # print('beginning of backprop')
-                    # backward + optimize only if in training phase
                     if phase == 'train':
                         loss.backward()
                         optimizer.step()
-                    # statistics
                 running_loss += loss.item() * inputs.size(0)
                 running_corrects += torch.sum(preds ==
                                               torch.max(labels, 1)[1].data)
             if phase == 'val':
                 # print('LR Decreased')
                 print('LR', optimizer.param_groups[0]['lr'])
-                # scheduler.step(loss)
+                scheduler.step(loss)
 
             epoch_loss = running_loss / len(dataloaders[phase].dataset)
             epoch_acc = running_corrects.double() / dataset_sizes[phase]
