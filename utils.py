@@ -1,7 +1,8 @@
 import torch
-
+import torch.nn as nn
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.ndimage import zoom
 import os
 import copy
 import time
@@ -10,7 +11,7 @@ from datetime import datetime
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-def imshow(inp, title=None):
+def imshow(inp, title=None,alpha=1,map=None):
     """Imshow for Tensor."""
     inp = inp.numpy().transpose((1, 2, 0))
     mean = np.array([0.6373545, 0.44605875, 0.46191868])
